@@ -128,3 +128,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# DB config
+/config
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
