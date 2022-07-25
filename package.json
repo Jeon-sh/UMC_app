@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Jeon-sh/UMC_app#readme",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.20.0",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
