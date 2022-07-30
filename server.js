@@ -23,5 +23,7 @@ app.use(function (req, res, next) {
 app.get("/", (req, res) => {
   res.send("UMC server page!");
 });
+app.use("/api/users", require("./api/user"));
+// app.use("/api/auth", require("./api/auth"));
 
 app.listen(3000, () => console.log("successfully started!"));
