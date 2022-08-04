@@ -22,4 +22,27 @@ router.post("/register", function (req, res) {
   );
   return router;
 });
+
+router.post(
+  "/login",
+  function (req, res) {
+    var isValid = true;
+    var validationError = {
+      name: "ValidationError",
+      errors: {},
+    };
+    if (!req.body.username) {
+      isValid = false;
+      validationError.errors.username = { message: "Username is required!" };
+    }
+    if (!req.body.password) {
+      isValid = false;
+      validationError.errors.password = { message: "Password is required!" };
+    }
+    if (!isValid) return res.json(util.successFalse(validationError));
+    else next();
+  },
+  function (req, res) {}
+);
+
 module.exports = router;
