@@ -2,7 +2,9 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 const connection = require("./config/database.js");
+const sequelize = require("./config/database.js");
 
+/* mysql db connection
 connection.connect(function (err) {
   if (err) {
     throw err;
@@ -10,6 +12,16 @@ connection.connect(function (err) {
     console.log("connect");
   }
 });
+// */
+
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("connected --");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
