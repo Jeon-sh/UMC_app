@@ -3,6 +3,7 @@ var router = express.Router();
 var status = require("../status.js");
 var bcrypt = require("bcrypt-nodejs");
 const db = require("../config/database.js");
+const mysql = require("mysql2");
 
 router.post("/register", function (req, res) {
   var salt = bcrypt.genSaltSync(10);

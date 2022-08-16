@@ -12,6 +12,11 @@ connection.connect(function (err) {
   }
 });
 
+const sequelize = new Sequelize("database", "username", "password", {
+  host: "localhost",
+  dialect: "mysql",
+});
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
