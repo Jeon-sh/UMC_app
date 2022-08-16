@@ -2,6 +2,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 const connection = require("./config/database.js");
+const { Sequelize } = require("sequelize");
 
 connection.connect(function (err) {
   if (err) {
