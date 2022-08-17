@@ -4,6 +4,7 @@ var status = require("../status.js");
 var bcrypt = require("bcrypt-nodejs");
 const db = require("../config/database.js");
 const mysql = require("mysql2");
+const { User } = require("../model/model.js");
 
 router.post("/register", function (req, res) {
   var salt = bcrypt.genSaltSync(10);
@@ -26,7 +27,7 @@ router.post("/register", function (req, res) {
 
 router.post(
   "/login",
-  function (req, res) {
+  async function (req, res, next) {
     var isValid = true;
     var validationError = {
       name: "ValidationError",
@@ -43,7 +44,11 @@ router.post(
     if (!isValid) return res.json(util.successFalse(validationError));
     else next();
   },
-  function (req, res) {}
+  async function (req, res, next) {
+    const row = await User.findAll({});
+    console.log(row);
+    res.json(status.success("test"));
+  }
 );
 
 module.exports = router;
