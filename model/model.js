@@ -1,38 +1,13 @@
-const Sequelize = require("sequelize");
+const sequelize = require("../config/database.js");
+const User = require("./users");
+const db = {};
 
-class User extends Sequelize.Model {
-  static init(sequelize) {
-    return super.init(
-      {
-        username: {
-          type: Sequelize.STRING(45),
-          allowNull: false,
-          unique: true,
-        },
-        email: {
-          type: Sequelize.STRING(45),
-          allowNull: false,
-          unique: true,
-        },
-        password: {
-          type: Sequelize.STRING(45),
-          allowNull: false,
-          unique: false,
-        },
-      },
-      {
-        sequelize,
-        timestamps: false, // true 설정 시  createdAt, updatedAt 자동 입력
-        underscored: false,
-        modelName: "User",
-        tableName: "users",
-        paranoid: false,
-        charset: "utf8",
-        collate: "utf8_general_ci",
-      }
-    );
-  }
-  static associate(db) {}
-}
+db.sequelize = sequelize;
 
-module.exports = User;
+db.User = User;
+
+User.init(sequelize);
+
+User.associate(db);
+
+module.exports = db;
