@@ -1,3 +1,4 @@
+require("dotenv").config();
 var jwt = require("jsonwebtoken");
 
 var status = {};
@@ -39,7 +40,7 @@ status.parseError = function (errors) {
 // middlewares
 status.isLoggedin = function (req, res, next) {
   var token = req.headers["x-access-token"];
-  if (!token) return res.json(status.successe(null, "token is required!"));
+  if (!token) return res.json(status.success(null, "token is required!"));
   else {
     jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
       if (err) return res.json(status.failure(err));
