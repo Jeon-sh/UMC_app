@@ -5,6 +5,7 @@ var bcrypt = require("bcrypt-nodejs");
 const db = require("../config/database.js");
 const mysql = require("mysql2");
 const { User } = require("../model/model.js");
+const { json } = require("body-parser");
 
 router.post("/register", function (req, res) {
   var salt = bcrypt.genSaltSync(10);
@@ -44,9 +45,14 @@ router.post(
     if (!isValid) return res.json(util.successFalse(validationError));
     else next();
   },
-  async function (req, res, next) {
-    const row = await User.findAll({});
-    console.log(row);
+  function (req, res, next) {
+    User.findOne({ where: { username: req.body.username } })
+      .then((row) => {
+        console.log(row);
+      })
+      .catch(function (err) {
+        res.json(status.failure(err, "login failed"));
+      });
     res.json(status.success("test"));
   }
 );
