@@ -137,3 +137,8 @@ dist
 .DS_Store
 .AppleDouble
 .LSOverride
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+.elasticbeanstalk

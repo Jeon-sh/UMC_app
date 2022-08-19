@@ -17,7 +17,7 @@ connection.connect(function (err) {
 sequelize
   .sync({ force: false })
   .then(() => {
-    console.log("connected --");
+    console.log("connected");
   })
   .catch((err) => {
     console.error(err);
