@@ -4,7 +4,8 @@
   "description": "UMC2기 같잇보기",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon --exec node server.js"
+    "dev": "nodemon --exec node server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
