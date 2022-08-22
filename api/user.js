@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const { User } = require("../model/model.js");
-var status = require("../status.js");
+var status = require("../utils/status.js");
 
 router.get("/me", status.isLoggedin, function (req, res, next) {
   User.findOne({ where: { username: req.decoded.username } }).then(

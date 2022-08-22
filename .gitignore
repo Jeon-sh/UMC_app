@@ -129,9 +129,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# DB config
-/config
-
 ### macOS ###
 # General
 .DS_Store

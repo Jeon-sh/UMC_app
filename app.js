@@ -1,8 +1,11 @@
+require("dotenv").config();
+var createError = require("http-errors");
+var express = require("express");
 const bodyParser = require("body-parser");
-const express = require("express");
-const app = express();
-const connection = require("./config/database.js");
-const sequelize = require("./config/database.js");
+const sequelize = require("./model/database.js");
+const status = require("./utils/status.js");
+
+var app = express();
 
 /* mysql db connection
 connection.connect(function (err) {
@@ -33,9 +36,25 @@ app.use(function (req, res, next) {
 });
 
 app.get("/", (req, res) => {
-  res.send("UMC server page!");
+  res.json(status.success("homepage"));
 });
 app.use("/api/users", require("./api/user"));
 app.use("/api/auth", require("./api/auth"));
 
-app.listen(3000, () => console.log("successfully started!"));
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render("error");
+});
+
+module.exports = app;

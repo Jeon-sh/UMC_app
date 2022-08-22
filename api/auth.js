@@ -1,7 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var router = express.Router();
-var status = require("../status.js");
+var status = require("../utils/status.js");
 var bcrypt = require("bcrypt");
 const mysql = require("mysql2");
 const { User } = require("../model/model.js");
