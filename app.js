@@ -36,7 +36,7 @@ app.use(function (req, res, next) {
 });
 
 app.get("/", (req, res) => {
-  res.json(status.success("homepage"));
+  res.json(status.success("UMC Homepage"));
 });
 app.use("/api/users", require("./api/user"));
 app.use("/api/auth", require("./api/auth"));
